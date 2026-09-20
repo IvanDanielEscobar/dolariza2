@@ -31,7 +31,7 @@ export default async function Home() {
           <div>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
-                KromaCore Fintech
+                Desarrollado por Ivan Escobar
               </span>
               <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                 Moneda Base: Peso Argentino (ARS)

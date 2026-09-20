@@ -83,7 +83,7 @@ export default function TrendChart() {
         </div>
 
         {/* Timeframe Buttons */}
-        <div className="flex items-center gap-1 bg-slate-950/80 p-1 rounded-lg border border-slate-800 text-xs font-semibold">
+        <div className="flex items-center gap-1 bg-slate-950/80 p-1 rounded-xl border border-slate-800 text-xs font-semibold">
           {[
             { label: "7 Días", val: 7 },
             { label: "30 Días", val: 30 },
@@ -95,10 +95,10 @@ export default function TrendChart() {
                 setTimeframe(t.val);
                 setHoverIndex(null);
               }}
-              className={`px-3 py-1 rounded-md transition ${
+              className={`px-3 py-1.5 rounded-lg transition ${
                 timeframe === t.val
-                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-bold"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-slate-800 text-emerald-400 font-bold border border-slate-700/80 shadow-sm"
+                  : "text-slate-400 hover:text-white hover:bg-slate-800/40"
               }`}
             >
               {t.label}

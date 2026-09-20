@@ -100,31 +100,31 @@ export default function RatesTable({ rates = [] }) {
             onClick={() => setActiveTab("all")}
             className={`px-3 py-1.5 rounded-lg transition ${
               activeTab === "all"
-                ? "bg-slate-800 text-emerald-400 font-bold shadow-sm"
-                : "text-slate-400 hover:text-white"
+                ? "bg-slate-800 text-emerald-400 font-bold border border-slate-700/80 shadow-sm"
+                : "text-slate-400 hover:text-white hover:bg-slate-800/40"
             }`}
           >
-            Todos ({rates.length})
+            Todos
           </button>
           <button
             onClick={() => setActiveTab("dolar")}
             className={`px-3 py-1.5 rounded-lg transition ${
               activeTab === "dolar"
-                ? "bg-slate-800 text-emerald-400 font-bold shadow-sm"
-                : "text-slate-400 hover:text-white"
+                ? "bg-slate-800 text-emerald-400 font-bold border border-slate-700/80 shadow-sm"
+                : "text-slate-400 hover:text-white hover:bg-slate-800/40"
             }`}
           >
-            Dólares
+            Dólar
           </button>
           <button
             onClick={() => setActiveTab("divisas")}
             className={`px-3 py-1.5 rounded-lg transition ${
               activeTab === "divisas"
-                ? "bg-slate-800 text-emerald-400 font-bold shadow-sm"
-                : "text-slate-400 hover:text-white"
+                ? "bg-slate-800 text-emerald-400 font-bold border border-slate-700/80 shadow-sm"
+                : "text-slate-400 hover:text-white hover:bg-slate-800/40"
             }`}
           >
-            Otras Divisas
+            Divisas
           </button>
         </div>
 
@@ -137,14 +137,14 @@ export default function RatesTable({ rates = [] }) {
               placeholder="Buscar cotización..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-8 pr-2.5 py-1.5 bg-slate-950/80 border border-slate-800 rounded-lg text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition"
+              className="w-full h-9 pl-8 pr-2.5 bg-slate-950/80 border border-slate-800 rounded-xl text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition"
             />
           </div>
 
           <select
             value={sortKey}
             onChange={(e) => setSortKey(e.target.value)}
-            className="bg-slate-950/80 border border-slate-800 text-slate-300 text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-emerald-500 transition cursor-pointer"
+            className="h-9 bg-slate-950/80 border border-slate-800 text-slate-300 text-xs rounded-xl px-2.5 focus:outline-none focus:border-emerald-500 transition cursor-pointer"
           >
             <option value="default">Orden original</option>
             <option value="venta-desc">Mayor precio</option>

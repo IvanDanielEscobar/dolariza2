@@ -18,10 +18,10 @@ export default function Navbar({ marketStatus = { isOpen: false, label: "Mercado
   };
 
   const navLinks = [
-    { href: "/", label: "Panel General" },
-    { href: "/dolar", label: "Dólar", badge: "7 tipos" },
+    { href: "/", label: "Mercado" },
+    { href: "/dolar", label: "Dólar" },
     { href: "/euro", label: "Euro" },
-    { href: "/divisas", label: "Regionales (BRL/CLP/UYU)" },
+    { href: "/divisas", label: "Divisas" },
     { href: "/calculadora", label: "Calculadora" },
   ];
 
@@ -29,112 +29,100 @@ export default function Navbar({ marketStatus = { isOpen: false, label: "Mercado
     <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/90 backdrop-blur-md text-slate-100 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
-          {/* Brand with KromaCore signature */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/"
-              className="flex items-center gap-3 text-xl font-bold tracking-tight text-white hover:opacity-95 transition-opacity group"
-            >
-              {/* KromaCore Logo Badge */}
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-900 border border-slate-700/80 p-1 flex items-center justify-center shadow-md overflow-hidden group-hover:border-cyan-500/50 transition">
-                <Image
-                  src="/img/kromacore-icon.png"
-                  alt="KromaCore Logo"
-                  width={36}
-                  height={36}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="leading-tight font-black text-slate-50 tracking-tight text-lg sm:text-xl">
-                    Dolariza<span className="text-emerald-400">2</span>
-                  </span>
-                  <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 uppercase tracking-wider font-mono">
-                    by KromaCore
-                  </span>
-                </div>
-                <span className="text-[10px] tracking-wider uppercase font-semibold text-slate-400">
-                  El núcleo digital de tu negocio
-                </span>
-              </div>
-            </Link>
-
-            {/* Market Status Pill */}
-            <div className="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-800 bg-slate-900/80 text-slate-300 ml-2">
-              <span
-                className={`w-2 h-2 rounded-full ${
-                  marketStatus.isOpen
-                    ? "bg-emerald-400 shadow-[0_0_8px_#34d399]"
-                    : "bg-amber-400"
-                }`}
+          {/* 1. Brand Identity */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 hover:opacity-95 transition-opacity group shrink-0"
+          >
+            {/* Solo el isotipo del dólar sin bordes ni encapsulado */}
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <Image
+                src="/img/dolar-icon.png"
+                alt="Dolariza2 Logo"
+                width={40}
+                height={40}
+                priority
+                className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(52,211,153,0.45)]"
               />
-              <span>{marketStatus.label}</span>
-              <span className="text-slate-500 text-[11px] font-normal">
-                (10 a 15 hs ART)
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="leading-tight font-black text-slate-50 tracking-tight text-lg sm:text-xl">
+                Dolariza<span className="text-emerald-400">2</span>
+              </span>
+              <span className="hidden sm:inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-900 text-cyan-300 border border-slate-700/80 uppercase tracking-wider font-mono">
+                by Ivan Escobar
               </span>
             </div>
-          </div>
+          </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1">
+          {/* 2. Desktop Navigation Links (Segmented Bar) */}
+          <nav className="hidden lg:flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800/90 shadow-inner">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 py-1.5 rounded-lg text-xs lg:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center ${
                     isActive
-                      ? "bg-slate-800/90 text-emerald-400 shadow-inner border border-slate-700/60"
-                      : "text-slate-300 hover:text-white hover:bg-slate-900"
+                      ? "bg-slate-800 text-emerald-400 border border-slate-700/80 shadow-sm font-bold"
+                      : "text-slate-400 hover:text-white hover:bg-slate-800/50"
                   }`}
                 >
-                  <span>{link.label}</span>
-                  {link.badge && (
-                    <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-400 border border-slate-700 font-mono">
-                      {link.badge}
-                    </span>
-                  )}
+                  {link.label}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Actions: Refresh & Quick CTA */}
-          <div className="flex items-center gap-2.5">
+          {/* 3. Utility Actions (Market Status + Refresh) */}
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* Live Market Status Pill */}
+            <div
+              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-800 bg-slate-900/80 text-slate-300"
+              title="Horario oficial mercado bancario y cambiario: Lunes a Viernes de 10:00 a 15:00 hs ART"
+            >
+              <span
+                className={`w-2 h-2 rounded-full ${
+                  marketStatus.isOpen
+                    ? "bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"
+                    : "bg-amber-400"
+                }`}
+              />
+              <span className="text-slate-200 font-semibold">{marketStatus.label}</span>
+              <span className="text-slate-500 text-[11px] font-normal hidden xl:inline">
+                (10 a 15 hs)
+              </span>
+            </div>
+
+            {/* Refresh Button */}
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
-              title="Actualizar cotizaciones"
-              className="p-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition-all flex items-center justify-center disabled:opacity-50"
+              title="Actualizar cotizaciones en vivo"
+              className="h-9 px-3 rounded-xl border border-slate-800 bg-slate-900/80 text-slate-300 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition-all flex items-center gap-2 text-xs font-semibold disabled:opacity-50"
             >
               <RefreshIcon
-                className={`w-4 h-4 ${isRefreshing ? "animate-spin text-emerald-400" : ""}`}
+                className={`w-3.5 h-3.5 ${isRefreshing ? "animate-spin text-emerald-400" : ""}`}
               />
+              <span className="hidden md:inline">Actualizar</span>
             </button>
-
-            <Link
-              href="/calculadora"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs tracking-wide transition shadow-sm"
-            >
-              Simular ARS
-            </Link>
           </div>
         </div>
 
-        {/* Mobile Navigation bar */}
-        <div className="md:hidden py-2 border-t border-slate-800/80 flex items-center gap-2 overflow-x-auto text-xs no-scrollbar">
+        {/* 4. Mobile & Tablet Navigation Bar */}
+        <div className="lg:hidden py-2.5 border-t border-slate-800/80 flex items-center gap-1.5 overflow-x-auto text-xs no-scrollbar">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`whitespace-nowrap px-3 py-1 rounded-md transition-colors font-medium ${
+                className={`whitespace-nowrap px-3.5 py-1.5 rounded-lg transition-all font-semibold text-xs ${
                   isActive
-                    ? "bg-slate-800 text-emerald-400 font-bold border border-slate-700"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-slate-800 text-emerald-400 border border-slate-700 shadow-sm"
+                    : "text-slate-400 hover:text-slate-200 bg-slate-900/50 border border-transparent"
                 }`}
               >
                 {link.label}
@@ -146,4 +134,3 @@ export default function Navbar({ marketStatus = { isOpen: false, label: "Mercado
     </header>
   );
 }
-

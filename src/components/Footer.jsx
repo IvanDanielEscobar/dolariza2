@@ -8,16 +8,17 @@ export default function Footer() {
     <footer className="border-t border-slate-800/80 bg-[#070a10] text-slate-400 text-sm mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          {/* Col 1 & 2: KromaCore Brand Signature */}
+          {/* Col 1 & 2: Author Signature */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 p-1 flex items-center justify-center shadow-md overflow-hidden">
+              {/* Solo el isotipo del dólar sin bordes ni encapsulado */}
+              <div className="relative w-10 h-10 flex items-center justify-center shrink-0">
                 <Image
-                  src="/img/kromacore-icon.png"
-                  alt="KromaCore Logo"
-                  width={38}
-                  height={38}
-                  className="w-full h-full object-contain"
+                  src="/img/dolar-icon.png"
+                  alt="Dolariza2 Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(52,211,153,0.35)]"
                 />
               </div>
               <div>
@@ -26,11 +27,11 @@ export default function Footer() {
                     Dolariza<span className="text-emerald-400">2</span>
                   </span>
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest font-mono">
-                    by KromaCore
+                    by Ivan Escobar
                   </span>
                 </div>
                 <p className="text-xs text-slate-400 font-medium">
-                  El núcleo digital de tu negocio
+                  Desarrollado por Ivan Escobar
                 </p>
               </div>
             </div>
@@ -40,8 +41,8 @@ export default function Footer() {
             </p>
 
             <div className="pt-2 flex flex-col gap-1 text-xs text-slate-400">
-              <span className="font-semibold text-slate-300">Desarrollo & Consultoría Tecnológica:</span>
-              <span>KromaCore • Río Cuarto, Córdoba, Argentina</span>
+              <span className="font-semibold text-slate-300">Desarrollo de Software:</span>
+              <span>Ivan Escobar • Río Cuarto, Córdoba, Argentina</span>
               <a
                 href="https://wa.me/5493585735413"
                 target="_blank"
@@ -121,10 +122,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 5: Ecosistema KromaCore */}
+          {/* Col 5: Proyectos & Portafolio */}
           <div>
             <h4 className="font-semibold text-slate-200 uppercase tracking-wider text-xs mb-3 font-mono">
-              Ecosistema KromaCore
+              Proyectos Destacados
             </h4>
             <p className="text-[11px] text-slate-400 mb-3">
               Soluciones digitales empresariales de alto rendimiento.
@@ -149,7 +150,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-center sm:text-left">
-            <span>© {currentYear} Dolariza2. Una iniciativa de <strong className="text-slate-300">KromaCore</strong>.</span>
+            <span>© {currentYear} Dolariza2. Desarrollado por <strong className="text-slate-300">Ivan Escobar</strong>.</span>
             <span className="hidden sm:inline text-slate-700">•</span>
             <span>Río Cuarto, Córdoba, Argentina</span>
           </div>
@@ -161,4 +162,3 @@ export default function Footer() {
     </footer>
   );
 }
-

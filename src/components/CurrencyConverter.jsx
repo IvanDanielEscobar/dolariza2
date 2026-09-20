@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { CalculatorIcon, ArrowUpDownIcon, ShieldCheckIcon } from "./Icons";
+import { CalculatorIcon, ArrowUpDownIcon } from "./Icons";
 import { formatARS } from "../lib/formatters";
 
 export default function CurrencyConverter({ allRates = [], isSidebar = false }) {
@@ -84,23 +84,23 @@ export default function CurrencyConverter({ allRates = [], isSidebar = false }) 
           </div>
 
           {/* Operation Selector */}
-          <div className="flex items-center gap-1 bg-slate-950/80 p-1 rounded-lg border border-slate-800 text-xs font-semibold self-start sm:self-auto">
+          <div className="flex items-center gap-1 bg-slate-950/80 p-1 rounded-xl border border-slate-800 text-xs font-semibold self-start sm:self-auto">
             <button
               onClick={() => setOperation("BUY")}
-              className={`px-2.5 py-1 rounded-md transition ${
+              className={`px-3 py-1.5 rounded-lg transition ${
                 operation === "BUY"
-                  ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-slate-800 text-emerald-400 font-bold border border-slate-700/80 shadow-sm"
+                  : "text-slate-400 hover:text-white hover:bg-slate-800/40"
               }`}
             >
               Comprar (Venta)
             </button>
             <button
               onClick={() => setOperation("SELL")}
-              className={`px-2.5 py-1 rounded-md transition ${
+              className={`px-3 py-1.5 rounded-lg transition ${
                 operation === "SELL"
-                  ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-slate-800 text-emerald-400 font-bold border border-slate-700/80 shadow-sm"
+                  : "text-slate-400 hover:text-white hover:bg-slate-800/40"
               }`}
             >
               Vender (Compra)

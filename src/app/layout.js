@@ -4,11 +4,11 @@ import Footer from "../components/Footer";
 import { getMarketStatus } from "../services/ratesService";
 
 export const metadata = {
-  title: "Dolariza2 by KromaCore | Cotizaciones, Métricas y Brecha Cambiaria en Argentina",
+  title: "Dolariza2 by Ivan Escobar | Cotizaciones, Métricas y Brecha Cambiaria en Argentina",
   description:
-    "Monitoreo en tiempo real de las cotizaciones del dólar (Blue, Oficial, MEP, CCL, Cripto), divisas internacionales, variaciones, spreads y brechas cambiarias en Argentina. Desarrollado por KromaCore.",
+    "Monitoreo en tiempo real de las cotizaciones del dólar (Blue, Oficial, MEP, CCL, Cripto), divisas internacionales, variaciones, spreads y brechas cambiarias en Argentina. Desarrollado por Ivan Escobar.",
   keywords: [
-    "KromaCore",
+    "Ivan Escobar",
     "Dolar Blue",
     "Dolar Hoy",
     "Dolar Oficial",
@@ -18,7 +18,7 @@ export const metadata = {
     "Calculadora Dolar",
     "Euro Blue",
   ],
-  authors: [{ name: "KromaCore", url: "https://wa.me/5493585735413" }],
+  authors: [{ name: "Ivan Escobar", url: "https://wa.me/5493585735413" }],
 };
 
 export default function RootLayout({ children }) {
