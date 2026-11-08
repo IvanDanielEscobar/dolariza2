@@ -6,8 +6,8 @@ import { formatARS } from "../../lib/formatters";
 import { TrendingUpIcon, TrendingDownIcon } from "../../components/Icons";
 
 export const metadata = {
-  title: "Mercado del Dólar en Argentina | Oficial, Blue, MEP, CCL y Cripto",
-  description: "Análisis profundo de todas las cotizaciones del dólar en Argentina: Blue, Oficial, MEP, CCL, Cripto y Tarjeta, con métricas de variaciones y brechas.",
+  title: "Mercado del Dólar | Dolariza2",
+  description: "Todas las cotizaciones del dólar en Argentina: Blue, Oficial, MEP, CCL, Cripto y Tarjeta.",
 };
 
 export const revalidate = 60;
@@ -17,145 +17,134 @@ export default async function DolarPage() {
   const { dolares, allRates } = snapshot;
 
   return (
-    <div className="min-h-screen pb-16">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden pb-16">
       <TickerBar items={dolares} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-8">
-        {/* Page Header */}
-        <div className="border-b border-slate-800 pb-6">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              Argentina • Sistema Multicambiario
-            </span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 space-y-6 sm:space-y-8 min-w-0">
+        {/* Header Hero */}
+        <section className="dark-panel rounded-2xl p-5 sm:p-7 flex flex-col md:flex-row md:items-end justify-between gap-5">
+          <div className="space-y-2 max-w-2xl min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                USD / ARS
+              </span>
+            </div>
+
+            <h1 className="text-xl sm:text-3xl font-medium text-white tracking-tight leading-snug">
+              Cotizaciones del Dólar en Argentina
+            </h1>
+
+            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed font-sans">
+              Seguimiento detallado de todas las cotizaciones del dólar: tipos de cambio oficiales,
+              mercado informal (Blue), tipos bursátiles (MEP y CCL) y dólar cripto.
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Mercado del Dólar en Argentina (USD / ARS)
-          </h1>
-          <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-3xl leading-relaxed">
-            Consulte todas las variantes del dólar en el mercado argentino. Compare precios 
-            de compra y venta, márgenes de spread, variaciones diarias y la brecha cambiaria respecto 
-            al tipo de cambio oficial del BCRA.
-          </p>
-        </div>
+        </section>
 
         {/* Detailed Dollar Cards Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 w-full min-w-0">
           {dolares.map((item) => {
             const isUp = item.variation?.isPositive;
             const isZero = item.variation?.isZero;
             const diffPct = item.variation?.diffPct ?? 0;
-            const diffVal = item.variation?.diff ?? 0;
 
             return (
               <div
                 key={item.casa || item.id}
-                className="bg-slate-900/60 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition shadow-lg flex flex-col justify-between backdrop-blur-sm"
+                className="dark-panel dark-panel-interactive rounded-2xl p-5 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2 mb-3">
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider font-bold text-emerald-400 font-mono">
-                        Dólar {item.casa}
-                      </span>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className="text-base sm:text-lg font-medium text-white tracking-tight">
                         {item.nombre}
                       </h3>
                     </div>
 
-                    {/* 24h Variation Pill */}
-                    <div
-                      className={`flex items-center gap-1 px-2 py-1 rounded text-xs font-mono font-semibold ${
+                    <span
+                      className={`text-xs font-mono tabular-nums flex items-center gap-0.5 ${
                         isZero
-                          ? "bg-slate-800 text-slate-400"
+                          ? "text-zinc-500"
                           : isUp
-                          ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                          : "bg-rose-500/10 text-rose-400 border border-rose-500/20"
+                          ? "text-emerald-400"
+                          : "text-rose-400"
                       }`}
                     >
                       {isZero ? (
                         <span>0.00%</span>
                       ) : isUp ? (
                         <>
-                          <TrendingUpIcon className="w-3.5 h-3.5" />
+                          <TrendingUpIcon className="w-2.5 h-2.5" />
                           <span>+{diffPct}%</span>
                         </>
                       ) : (
                         <>
-                          <TrendingDownIcon className="w-3.5 h-3.5" />
+                          <TrendingDownIcon className="w-2.5 h-2.5" />
                           <span>{diffPct}%</span>
                         </>
                       )}
-                    </div>
+                    </span>
                   </div>
 
                   {/* Compra / Venta Split Box */}
-                  <div className="grid grid-cols-2 gap-3 bg-slate-950/80 p-3.5 rounded-lg border border-slate-800/80 my-3 font-mono">
+                  <div className="grid grid-cols-2 gap-3 bg-zinc-900/40 p-3.5 rounded-xl border border-white/[0.05] my-3 font-mono">
                     <div>
-                      <span className="text-slate-500 text-[11px] block uppercase font-sans">
+                      <span className="text-zinc-500 text-[10px] block uppercase font-sans">
                         Compra
                       </span>
-                      <span className="text-base sm:text-lg font-bold text-slate-200">
+                      <span className="text-sm font-medium text-zinc-300 tabular-nums">
                         {formatARS(item.compra)}
                       </span>
                     </div>
-                    <div>
-                      <span className="text-slate-500 text-[11px] block uppercase font-sans">
+                    <div className="text-right">
+                      <span className="text-zinc-500 text-[10px] block uppercase font-sans">
                         Venta
                       </span>
-                      <span className="text-lg sm:text-xl font-extrabold text-white">
+                      <span className="text-lg font-medium text-white tabular-nums">
                         {formatARS(item.venta)}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                {/* Additional Metrics: Brecha & Spread */}
-                <div className="pt-3 border-t border-slate-800/80 space-y-2 text-xs font-mono">
-                  <div className="flex items-center justify-between text-slate-400">
-                    <span className="font-sans">Spread (Venta - Compra):</span>
-                    <span className="text-slate-200 font-semibold">
-                      {formatARS(item.spread?.spread)}{" "}
-                      <span className="text-slate-500">
-                        ({item.spread?.spreadPct?.toFixed(1)}%)
-                      </span>
+                {/* Additional Metrics */}
+                <div className="pt-2.5 hairline-t space-y-1 text-xs font-mono">
+                  <div className="flex items-center justify-between text-zinc-400">
+                    <span className="text-zinc-500">Spread:</span>
+                    <span className="text-zinc-300 tabular-nums">
+                      {formatARS(item.spread?.spread)}
                     </span>
                   </div>
 
                   {item.brecha !== undefined && item.casa !== "oficial" && (
-                    <div className="flex items-center justify-between text-slate-400">
-                      <span className="font-sans">Brecha vs. Oficial:</span>
-                      <span className="text-emerald-400 font-bold">
-                        +{item.brecha}%
+                    <div className="flex items-center justify-between text-zinc-400">
+                      <span className="text-zinc-500">Brecha c/ Oficial:</span>
+                      <span className="text-zinc-300 tabular-nums">
+                        {item.brecha >= 0 ? `+${item.brecha}%` : `${item.brecha}%`}
                       </span>
                     </div>
                   )}
-
-                  <div className="flex items-center justify-between text-[11px] text-slate-500 pt-1 font-sans">
-                    <span>Movimiento nominal:</span>
-                    <span className="font-mono">
-                      {diffVal > 0 ? `+${diffVal}` : diffVal} ARS
-                    </span>
-                  </div>
                 </div>
               </div>
             );
           })}
         </section>
 
-        {/* Dedicated Dollar Table */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-white">
-            Matriz Comparativa de Variaciones
-          </h2>
-          <RatesTable rates={dolares} />
-        </section>
+        {/* Rates Board & Converter */}
+        <section className="grid grid-cols-1 xl:grid-cols-12 gap-5 sm:gap-6 items-start">
+          <div className="xl:col-span-7 space-y-3">
+            <h2 className="text-base font-medium text-white px-0.5">
+              Conversiones del dolar
+            </h2>
+            <RatesTable rates={dolares} />
+          </div>
 
-        {/* Currency Converter */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-white">
-            Simulador de Compra / Venta
-          </h2>
-          <CurrencyConverter allRates={allRates} />
+          <div className="xl:col-span-5 space-y-3">
+            <h2 className="text-base font-medium text-white px-0.5">
+              Conversor Multidivisa
+            </h2>
+            <CurrencyConverter allRates={allRates} isSidebar={true} />
+          </div>
         </section>
       </div>
     </div>
