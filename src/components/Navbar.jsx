@@ -23,76 +23,76 @@ export default function Navbar({ marketStatus = { isOpen: false, label: "Mercado
     { href: "/euro", label: "Euro" },
     { href: "/divisas", label: "Divisas" },
     { href: "/calculadora", label: "Calculadora" },
+    { href: "/noticias", label: "Noticias", hasLiveDot: true },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/90 backdrop-blur-md text-slate-100 transition-colors">
+    <header className="sticky top-0 z-50 w-full max-w-full border-b border-white/[0.07] bg-[#09090b]/90 backdrop-blur-md text-zinc-100 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex items-center justify-between h-14 sm:h-16 gap-3">
           {/* 1. Brand Identity */}
           <Link
             href="/"
-            className="flex items-center gap-3 hover:opacity-95 transition-opacity group shrink-0"
+            className="flex items-center gap-2.5 hover:opacity-90 transition-opacity shrink-0 min-w-0"
           >
-            {/* Solo el isotipo del dólar sin bordes ni encapsulado */}
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-zinc-900 border border-white/[0.1] flex items-center justify-center p-1.5 shrink-0 shadow-sm">
               <Image
                 src="/img/dolar-icon.png"
-                alt="Dolariza2 Logo"
-                width={40}
-                height={40}
+                alt="Dolariza2"
+                width={28}
+                height={28}
                 priority
-                className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(52,211,153,0.45)]"
+                className="w-full h-full object-contain"
               />
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="leading-tight font-black text-slate-50 tracking-tight text-lg sm:text-xl">
-                Dolariza<span className="text-emerald-400">2</span>
+            <div className="flex items-baseline gap-1.5 min-w-0">
+              <span className="font-bold tracking-tight text-white text-base sm:text-lg">
+                DOLARIZA<span className="text-emerald-400 font-extrabold">2</span>
               </span>
-              <span className="hidden sm:inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-900 text-cyan-300 border border-slate-700/80 uppercase tracking-wider font-mono">
-                by Ivan Escobar
+              <span className="text-[10px] font-mono uppercase text-zinc-500 font-medium px-1.5 py-0.2 bg-zinc-900/90 rounded border border-white/[0.06] hidden sm:inline-block">
+                ARS
               </span>
             </div>
           </Link>
 
-          {/* 2. Desktop Navigation Links (Segmented Bar) */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800/90 shadow-inner">
+          {/* 2. Desktop Navigation Links (Segmented Minimalist Bar) */}
+          <nav className="hidden lg:flex items-center gap-0.5 p-1 rounded-xl bg-zinc-900/60 border border-white/[0.06]">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
                     isActive
-                      ? "bg-slate-800 text-emerald-400 border border-slate-700/80 shadow-sm font-bold"
-                      : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                      ? "bg-zinc-800 text-white shadow-sm border border-white/[0.08]"
+                      : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/40"
                   }`}
                 >
                   {link.label}
+                  {link.hasLiveDot && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  )}
                 </Link>
               );
             })}
           </nav>
 
           {/* 3. Utility Actions (Market Status + Refresh) */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Live Market Status Pill */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            {/* Live Market Status */}
             <div
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-800 bg-slate-900/80 text-slate-300"
-              title="Horario oficial mercado bancario y cambiario: Lunes a Viernes de 10:00 a 15:00 hs ART"
+              className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg text-xs font-mono border border-white/[0.06] bg-zinc-900/50 text-zinc-400"
+              title="Horario oficial mercado bancario: Lunes a Viernes de 10:00 a 15:00 hs ART"
             >
               <span
-                className={`w-2 h-2 rounded-full ${
-                  marketStatus.isOpen
-                    ? "bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse"
-                    : "bg-amber-400"
+                className={`w-1.5 h-1.5 rounded-full ${
+                  marketStatus.isOpen ? "bg-emerald-400 animate-pulse" : "bg-zinc-600"
                 }`}
               />
-              <span className="text-slate-200 font-semibold">{marketStatus.label}</span>
-              <span className="text-slate-500 text-[11px] font-normal hidden xl:inline">
-                (10 a 15 hs)
+              <span className="text-[11px] uppercase tracking-wider text-zinc-300">
+                {marketStatus.label}
               </span>
             </div>
 
@@ -100,32 +100,35 @@ export default function Navbar({ marketStatus = { isOpen: false, label: "Mercado
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
-              title="Actualizar cotizaciones en vivo"
-              className="h-9 px-3 rounded-xl border border-slate-800 bg-slate-900/80 text-slate-300 hover:text-white hover:border-slate-700 hover:bg-slate-800 transition-all flex items-center gap-2 text-xs font-semibold disabled:opacity-50"
+              title="Actualizar cotizaciones"
+              className="h-8 px-2.5 rounded-lg border border-white/[0.08] bg-zinc-900 text-zinc-300 hover:text-white hover:border-white/[0.18] transition-all flex items-center justify-center gap-1.5 text-xs font-mono disabled:opacity-50 shrink-0"
             >
               <RefreshIcon
-                className={`w-3.5 h-3.5 ${isRefreshing ? "animate-spin text-emerald-400" : ""}`}
+                className={`w-3.5 h-3.5 ${isRefreshing ? "animate-spin text-emerald-400" : "text-zinc-400"}`}
               />
-              <span className="hidden md:inline">Actualizar</span>
+              <span className="hidden md:inline text-[11px] uppercase font-medium">ACTUALIZAR</span>
             </button>
           </div>
         </div>
 
-        {/* 4. Mobile & Tablet Navigation Bar */}
-        <div className="lg:hidden py-2.5 border-t border-slate-800/80 flex items-center gap-1.5 overflow-x-auto text-xs no-scrollbar">
+        {/* 4. Mobile Navigation Bar */}
+        <div className="lg:hidden py-1.5 border-t border-white/[0.06] flex items-center gap-1 overflow-x-auto no-scrollbar scroll-smooth touch-pan-x -mx-4 px-4">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`whitespace-nowrap px-3.5 py-1.5 rounded-lg transition-all font-semibold text-xs ${
+                className={`whitespace-nowrap shrink-0 px-3 py-1 rounded-lg transition-all font-medium text-xs flex items-center gap-1.5 ${
                   isActive
-                    ? "bg-slate-800 text-emerald-400 border border-slate-700 shadow-sm"
-                    : "text-slate-400 hover:text-slate-200 bg-slate-900/50 border border-transparent"
+                    ? "bg-zinc-800 text-white border border-white/[0.08]"
+                    : "text-zinc-400 hover:text-zinc-200"
                 }`}
               >
                 {link.label}
+                {link.hasLiveDot && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                )}
               </Link>
             );
           })}

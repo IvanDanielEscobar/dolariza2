@@ -5,89 +5,69 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-800/80 bg-[#070a10] text-slate-400 text-sm mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+    <footer className="w-full max-w-full overflow-hidden hairline-t bg-[#07080a] text-zinc-500 text-xs mt-16 sm:mt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-10">
           {/* Col 1 & 2: Author Signature */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              {/* Solo el isotipo del dólar sin bordes ni encapsulado */}
-              <div className="relative w-10 h-10 flex items-center justify-center shrink-0">
+          <div className="lg:col-span-2 space-y-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-zinc-900 border border-white/[0.08] flex items-center justify-center p-1 shrink-0">
                 <Image
                   src="/img/dolar-icon.png"
-                  alt="Dolariza2 Logo"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(52,211,153,0.35)]"
+                  alt="Dolariza2"
+                  width={24}
+                  height={24}
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xl font-black text-slate-100 tracking-tight">
-                    Dolariza<span className="text-emerald-400">2</span>
-                  </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest font-mono">
-                    by Ivan Escobar
-                  </span>
-                </div>
-                <p className="text-xs text-slate-400 font-medium">
-                  Desarrollado por Ivan Escobar
-                </p>
+                <span className="font-bold text-white tracking-tight text-sm">
+                  DOLARIZA<span className="text-emerald-400">2</span>
+                </span>
+                <span className="text-[10px] text-zinc-500 font-mono ml-2">by Ivan Escobar</span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Plataforma fintech de monitoreo cambiario y financiero en tiempo real orientada a empresas, comercios y profesionales en Argentina. Cotizaciones oficiales, paralelas y financieras con base de cálculo en Pesos Argentinos (ARS).
+            <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
+              Monitor de cotizaciones y herramientas de cálculo cambiario en tiempo real para Argentina.
+              Diseñado con arquitectura de redundancia continua y fuentes oficiales.
             </p>
 
-            <div className="pt-2 flex flex-col gap-1 text-xs text-slate-400">
-              <span className="font-semibold text-slate-300">Desarrollo de Software:</span>
-              <span>Ivan Escobar • Río Cuarto, Córdoba, Argentina</span>
-              <a
-                href="https://wa.me/5493585735413"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-emerald-400 hover:text-emerald-300 font-medium transition inline-flex items-center gap-1.5 mt-1"
-              >
-                <span>WhatsApp: +54 9 358 573-5413</span>
-              </a>
+            <div className="pt-1 flex flex-col gap-0.5 text-[11px] font-mono text-zinc-500">
+              <span>Desarrollo & Arquitectura: Ivan Escobar</span>
+              <span>Río Cuarto, Córdoba, Argentina</span>
             </div>
           </div>
 
-          {/* Col 3: Cotizaciones & Divisas */}
+          {/* Col 3: Mercados */}
           <div>
-            <h4 className="font-semibold text-slate-200 uppercase tracking-wider text-xs mb-3 font-mono">
-              Cotizaciones ARS
+            <h4 className="font-medium text-zinc-300 uppercase tracking-wider text-[11px] mb-3 font-mono">
+              MERCADOS
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-1.5 text-xs text-zinc-400">
               <li>
-                <Link href="/dolar" className="hover:text-emerald-400 transition">
+                <Link href="/dolar" className="hover:text-white transition">
                   Dólar Blue & Oficial
                 </Link>
               </li>
               <li>
-                <Link href="/dolar" className="hover:text-emerald-400 transition">
-                  Dólar Financiero (MEP / CCL)
+                <Link href="/dolar" className="hover:text-white transition">
+                  Dólar Bursátil (MEP / CCL)
                 </Link>
               </li>
               <li>
-                <Link href="/dolar" className="hover:text-emerald-400 transition">
+                <Link href="/dolar" className="hover:text-white transition">
                   Dólar Cripto & Tarjeta
                 </Link>
               </li>
               <li>
-                <Link href="/euro" className="hover:text-emerald-400 transition">
+                <Link href="/euro" className="hover:text-white transition">
                   Euro Oficial & Blue
                 </Link>
               </li>
               <li>
-                <Link href="/divisas" className="hover:text-emerald-400 transition">
-                  Real Brasileño (BRL)
-                </Link>
-              </li>
-              <li>
-                <Link href="/divisas" className="hover:text-emerald-400 transition">
-                  Pesos Chile & Uruguay
+                <Link href="/divisas" className="hover:text-white transition">
+                  Divisas de la Región
                 </Link>
               </li>
             </ul>
@@ -95,67 +75,45 @@ export default function Footer() {
 
           {/* Col 4: Herramientas */}
           <div>
-            <h4 className="font-semibold text-slate-200 uppercase tracking-wider text-xs mb-3 font-mono">
-              Herramientas
+            <h4 className="font-medium text-zinc-300 uppercase tracking-wider text-[11px] mb-3 font-mono">
+              SERVICIOS
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-1.5 text-xs text-zinc-400">
               <li>
-                <Link href="/calculadora" className="hover:text-emerald-400 transition">
-                  Simulador de Conversión ARS
+                <Link href="/noticias" className="hover:text-white transition">
+                  Noticias Financieras
                 </Link>
               </li>
               <li>
-                <Link href="/" className="hover:text-emerald-400 transition">
-                  Matriz de Arbitraje y Spreads
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="hover:text-emerald-400 transition">
-                  Monitoreo de Brecha Cambiaria
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="hover:text-emerald-400 transition">
-                  Tendencias Históricas SVG
+                <Link href="/calculadora" className="hover:text-white transition">
+                  Conversor Multidivisa
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 5: Proyectos & Portafolio */}
+          {/* Col 5: Fuentes & APIs */}
           <div>
-            <h4 className="font-semibold text-slate-200 uppercase tracking-wider text-xs mb-3 font-mono">
-              Proyectos Destacados
+            <h4 className="font-medium text-zinc-300 uppercase tracking-wider text-[11px] mb-3 font-mono">
+              FUENTES DE DATOS
             </h4>
-            <p className="text-[11px] text-slate-400 mb-3">
-              Soluciones digitales empresariales de alto rendimiento.
-            </p>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <span className="font-medium text-slate-300">StockBase POS</span>
-                <p className="text-[11px] text-slate-400">Control de stock y punto de venta</p>
-              </li>
-              <li>
-                <span className="font-medium text-slate-300">Fastbarber</span>
-                <p className="text-[11px] text-slate-400">Gestión de turnos y estética</p>
-              </li>
-              <li>
-                <span className="font-medium text-slate-300">Kroma Workspace</span>
-                <p className="text-[11px] text-slate-400">Automatización operativa B2B</p>
-              </li>
+            <ul className="space-y-1.5 text-xs text-zinc-400 font-mono text-[11px]">
+              <li>• DolarAPI (Live)</li>
+              <li>• ArgentinaDatos (Histórico & INDEC)</li>
+              <li>• Ámbito Financiero (Cables)</li>
+              <li>• El Cronista Comercial (Cables)</li>
+              <li>• CriptoYa (Respaldo)</li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-center sm:text-left">
-            <span>© {currentYear} Dolariza2. Desarrollado por <strong className="text-slate-300">Ivan Escobar</strong>.</span>
-            <span className="hidden sm:inline text-slate-700">•</span>
-            <span>Río Cuarto, Córdoba, Argentina</span>
+        <div className="pt-6 hairline-t flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-500">
+          <div>
+            <span>© {currentYear} Dolariza2 • Desarrollado por <strong className="text-zinc-300 font-medium">Ivan Escobar</strong>.</span>
           </div>
-          <div className="text-[11px] text-slate-400 text-center sm:text-right max-w-md">
-            Información financiera de carácter informativo público provista vía DolarAPI. No constituye asesoramiento financiero ni recomendación de inversión.
+          <div className="text-[11px] font-mono text-zinc-600 text-center sm:text-right">
+            Precios de referencia orientativos con actualización continua.
           </div>
         </div>
       </div>
